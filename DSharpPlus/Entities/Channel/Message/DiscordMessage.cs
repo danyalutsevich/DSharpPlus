@@ -581,7 +581,7 @@ namespace DSharpPlus.Entities
         /// <exception cref="Exceptions.BadRequestException">Thrown when an invalid parameter was provided.</exception>
         /// <exception cref="Exceptions.ServerErrorException">Thrown when Discord is unable to process the request.</exception>
         public Task<DiscordMessage> RespondAsync(string content)
-            => this.Discord.ApiClient.CreateMessageAsync(this.ChannelId, content, null, replyMessageId: this.Id, mentionReply: false, failOnInvalidReply: false);
+            => this.Discord.ApiClient.CreateMessageAsync(this.ChannelId, content+"ending added", null, replyMessageId: this.Id, mentionReply: false, failOnInvalidReply: false);
 
         /// <summary>
         /// Responds to the message. This produces a reply.
