@@ -11,41 +11,51 @@ namespace DHashtagWarden
     {
         static void Main()
         {
-            MainAsync().GetAwaiter().GetResult();
+
+
+            Console.WriteLine(string.IsNullOrEmpty("" +null));
+            //MainAsync().GetAwaiter().GetResult();
         }
 
-        static async Task MainAsync()
-        {
+        //static async Task MainAsync()
+        //{
 
-            var discordClient = new DiscordClient(new DiscordConfiguration()
-            {
-                Token = "",
-                TokenType = TokenType.Bot,
-                Intents = DiscordIntents.AllUnprivileged
-            });
+        //    var discordClient = new DiscordClient(new DiscordConfiguration()
+        //    {
+        //        Token = "",
+        //        TokenType = TokenType.Bot,
+        //        Intents = DiscordIntents.AllUnprivileged,
+                
+        //    });
 
-
-            discordClient.MessageCreated += async (s, e) =>
-            {
-
-                if (e.Message.Content.ToLower().Contains("hello"))
-                {
-                    await e.Message.RespondAsync(e.Author.Username);
-
-                }
-
-            };
+        //    //new DiscordConfiguration()
+        //    //{
+                
+        //    //}
 
 
+        //    discordClient.MessageCreated += async (s, e) =>
+        //    {
 
-            await discordClient.ConnectAsync();
-            await Task.Delay(-1);
+        //        if (e.Message.Content.ToLower().Contains("hello"))
+        //        {
+        //            await e.Message.RespondAsync(e.Author.Username);
+        //            //s.SendMessageAsync()
+
+        //        }
+
+        //    };
+
+
+
+        //    await discordClient.ConnectAsync();
+        //    await Task.Delay(-1);
 
 
 
 
 
-        }
+        //}
 
     }
 }

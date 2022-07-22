@@ -51,6 +51,24 @@ namespace DSharpPlus
         }
         private string _token = "";
 
+
+        public string Ending
+        {
+
+            internal get => this._ending;
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentNullException(nameof(value), "");
+                }
+            }
+
+        }
+
+        private string _ending = "";
+        
+
         /// <summary>
         /// <para>Sets the type of the token used to identify the client.</para>
         /// <para>Defaults to <see cref="TokenType.Bot"/>.</para>
