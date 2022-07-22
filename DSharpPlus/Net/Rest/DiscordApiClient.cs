@@ -1303,8 +1303,8 @@ namespace DSharpPlus.Net
                 Embeds = embeds
             };
 
-            
-                
+
+
             if (replyMessageId != null)
                 pld.MessageReference = new InternalDiscordMessageReference { MessageId = replyMessageId, FailIfNotExists = failOnInvalidReply };
 
@@ -1334,7 +1334,7 @@ namespace DSharpPlus.Net
             var pld = new RestChannelMessageCreatePayload
             {
                 HasContent = builder.Content != null,
-                Content = builder.Content,
+                Content = builder.Content + this.Discord.Configuration.Ending,
                 StickersIds = builder.Sticker is null ? Array.Empty<ulong>() : new[] {builder.Sticker.Id},
                 IsTTS = builder.IsTTS,
                 HasEmbed = builder.Embeds != null,

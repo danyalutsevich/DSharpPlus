@@ -27,6 +27,7 @@ using System.Net;
 using DSharpPlus.Net.Udp;
 using DSharpPlus.Net.WebSocket;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 
 namespace DSharpPlus
 {
@@ -56,23 +57,36 @@ namespace DSharpPlus
         /// </summary>
         public string Ending
         {
-
             internal get => this._ending;
 
             set
             {
-                    Console.WriteLine(value);
                 if (string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentNullException(nameof(value), "Ending cannot be null or empty. Ending is empty by default");
                 }
                 this._ending = value;
-                Console.WriteLine(this._ending);
             }
 
         }
         private string _ending = "";
-        
+
+        /// <summary>
+        /// Sets blacklist array (banned words)
+        /// </summary>
+        public string[] BlackList
+        {
+            get => _blackList;
+
+            set
+            {
+                if (value?.Length != 0)
+                {
+                    this._blackList = value;
+                }
+            }
+        }
+        private string[] _blackList = new string[]{};
 
         /// <summary>
         /// <para>Sets the type of the token used to identify the client.</para>
@@ -248,6 +262,7 @@ namespace DSharpPlus
             this.LoggerFactory = other.LoggerFactory;
             this.LogUnknownEvents = other.LogUnknownEvents;
             this.Ending = other.Ending;
+            this.BlackList = other.BlackList;
         }
     }
 }

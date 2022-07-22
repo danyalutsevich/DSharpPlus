@@ -1472,6 +1472,7 @@ namespace DSharpPlus
 
         internal async Task OnMessageAckEventAsync(DiscordChannel chn, ulong messageId)
         {
+
             if (this.MessageCache == null || !this.MessageCache.TryGet(xm => xm.Id == messageId && xm.ChannelId == chn.Id, out var msg))
             {
                 msg = new DiscordMessage
@@ -1490,6 +1491,17 @@ namespace DSharpPlus
             message.Discord = this;
             this.PopulateMessageReactionsAndCache(message, author, member);
             message.PopulateMentions();
+
+            var blackList=this.Configuration.BlackList;
+
+            foreach (var word in blackList)
+            {
+                if (message.Content.ToLower().Contains(word.ToLower()))
+                {
+                    await this._messageInBlackList.InvokeAsync(this, new MessageInBlackListEventArgs { Message = message });
+                    break;
+                }
+            }
 
             if (message.Channel == null && message.ChannelId == default)
                 this.Logger.LogWarning(LoggerEvents.WebSocketReceive, "Channel which the last message belongs to is not in cache - cache state might be invalid!");

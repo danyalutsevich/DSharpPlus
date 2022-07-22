@@ -490,6 +490,19 @@ namespace DSharpPlus
         }
         private AsyncEvent<DiscordClient, MessageUpdateEventArgs> _messageUpdated;
 
+
+
+        /// <summary>
+        /// Fired when a message contains words from blacklist
+        /// </summary>
+        public event AsyncEventHandler<DiscordClient, MessageInBlackListEventArgs> MessageInBlackList
+        {
+            add => this._messageInBlackList.Register(value);
+            remove => this._messageInBlackList.Unregister(value);
+        }
+        private AsyncEvent<DiscordClient, MessageInBlackListEventArgs> _messageInBlackList;
+
+
         /// <summary>
         /// Fired when a message is deleted.
         /// For this Event you need the <see cref="DiscordIntents.GuildMessages"/> intent specified in <seealso cref="DiscordConfiguration.Intents"/>

@@ -22,6 +22,7 @@
 // SOFTWARE.
 
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -294,6 +295,29 @@ namespace DSharpPlus
 
             return string.Join(", ", strs.OrderBy(xs => xs));
         }
+
+
+        /// <summary>
+        /// Gets BlackList words from a file.
+        /// </summary>
+        /// <param name="path">Path of the file</param>
+        /// <returns>Returns array of blacklist words (string)</returns>
+        public static string[] GetBlackList(string path)
+        {
+            string[] lines = new string[]{ };
+
+            if (File.Exists(path))
+            {
+                lines = File.ReadAllLines(path);
+            }
+            else
+            {
+                throw new IOException("BlackList file not found");  
+            }
+            
+            return lines;
+        }
+
 
         /// <summary>
         /// Checks whether this string contains given characters.
