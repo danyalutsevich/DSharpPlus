@@ -19,7 +19,7 @@ namespace DHashtagWarden
 
             var discordClient = new DiscordClient(new DiscordConfiguration()
             {
-                Token = "MTAwMDAzNTU5OTkyOTA1MzIxNA.GbK2is.UO-yUR4dFxj57FjgGmWTIi3TvfJddRq1QIZLyY",
+                Token = "",
                 TokenType = TokenType.Bot,
                 Intents = DiscordIntents.AllUnprivileged
             });
