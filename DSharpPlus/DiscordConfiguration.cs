@@ -51,21 +51,26 @@ namespace DSharpPlus
         }
         private string _token = "";
 
-
+        /// <summary>
+        /// Sets the ending for every message bot sends.
+        /// </summary>
         public string Ending
         {
 
             internal get => this._ending;
+
             set
             {
+                    Console.WriteLine(value);
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentNullException(nameof(value), "");
+                    throw new ArgumentNullException(nameof(value), "Ending cannot be null or empty. Ending is empty by default");
                 }
+                this._ending = value;
+                Console.WriteLine(this._ending);
             }
 
         }
-
         private string _ending = "";
         
 
@@ -242,6 +247,7 @@ namespace DSharpPlus
             this.Intents = other.Intents;
             this.LoggerFactory = other.LoggerFactory;
             this.LogUnknownEvents = other.LogUnknownEvents;
+            this.Ending = other.Ending;
         }
     }
 }

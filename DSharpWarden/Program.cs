@@ -13,49 +13,47 @@ namespace DHashtagWarden
         {
 
 
-            Console.WriteLine(string.IsNullOrEmpty("" +null));
-            //MainAsync().GetAwaiter().GetResult();
+            MainAsync().GetAwaiter().GetResult();
         }
 
-        //static async Task MainAsync()
-        //{
+        static async Task MainAsync()
+        {
 
-        //    var discordClient = new DiscordClient(new DiscordConfiguration()
-        //    {
-        //        Token = "",
-        //        TokenType = TokenType.Bot,
-        //        Intents = DiscordIntents.AllUnprivileged,
+            var discordClient = new DiscordClient(new DiscordConfiguration()
+            {
+                Token = "MTAwMDAzNTU5OTkyOTA1MzIxNA.GdmBqr.nn-LijJUQlpn1__bKZttGbfINoowNmjt2vxooI",
+                Intents = DiscordIntents.AllUnprivileged,
+                Ending = "das",
+            });
+
+            //new DiscordConfiguration()
+            //{
                 
-        //    });
-
-        //    //new DiscordConfiguration()
-        //    //{
-                
-        //    //}
+            //}
 
 
-        //    discordClient.MessageCreated += async (s, e) =>
-        //    {
+            discordClient.MessageCreated += async (s, e) =>
+            {
 
-        //        if (e.Message.Content.ToLower().Contains("hello"))
-        //        {
-        //            await e.Message.RespondAsync(e.Author.Username);
-        //            //s.SendMessageAsync()
+                if (e.Message.Content.ToLower().Contains("hello"))
+                {
+                    await e.Message.RespondAsync(e.Author.Username);
+                    //s.SendMessageAsync()
 
-        //        }
+                }
 
-        //    };
+            };
 
 
 
-        //    await discordClient.ConnectAsync();
-        //    await Task.Delay(-1);
+            await discordClient.ConnectAsync();
+            await Task.Delay(-1);
 
 
 
 
 
-        //}
+        }
 
     }
 }

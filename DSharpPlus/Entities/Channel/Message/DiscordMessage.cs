@@ -52,6 +52,7 @@ namespace DSharpPlus.Entities
             : this()
         {
             this.Discord = other.Discord;
+            
 
             this._attachments = new List<DiscordAttachment>(other._attachments);
             this._embeds = new List<DiscordEmbed>(other._embeds);
@@ -78,6 +79,7 @@ namespace DSharpPlus.Entities
             this.TimestampRaw = other.TimestampRaw;
             this.WebhookId = other.WebhookId;
             this.ApplicationId = other.ApplicationId;
+
         }
 
         /// <summary>
@@ -580,8 +582,12 @@ namespace DSharpPlus.Entities
         /// <exception cref="Exceptions.NotFoundException">Thrown when the member does not exist.</exception>
         /// <exception cref="Exceptions.BadRequestException">Thrown when an invalid parameter was provided.</exception>
         /// <exception cref="Exceptions.ServerErrorException">Thrown when Discord is unable to process the request.</exception>
-        public Task<DiscordMessage> RespondAsync(string content, string ending="")
-            => this.Discord.ApiClient.CreateMessageAsync(this.ChannelId, content + ending, null, replyMessageId: this.Id, mentionReply: false, failOnInvalidReply: false);
+        public Task<DiscordMessage> RespondAsync(string content)
+        {
+            Console.WriteLine(this.Discord.Configuration.Ending);
+            return this.Discord.ApiClient.CreateMessageAsync(this.ChannelId, content, null, replyMessageId: this.Id, mentionReply: false, failOnInvalidReply: false);
+
+        }
 
         /// <summary>
         /// Responds to the message. This produces a reply.

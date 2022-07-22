@@ -1294,16 +1294,17 @@ namespace DSharpPlus.Net
                 foreach (var embed in embeds)
                     if (embed.Timestamp != null)
                         embed.Timestamp = embed.Timestamp.Value.ToUniversalTime();
-
             var pld = new RestChannelMessageCreatePayload
             {
                 HasContent = content != null,
-                Content = content,
+                Content = content+this.Discord.Configuration.Ending,
                 IsTTS = false,
                 HasEmbed = embeds?.Any() ?? false,
                 Embeds = embeds
             };
 
+            
+                
             if (replyMessageId != null)
                 pld.MessageReference = new InternalDiscordMessageReference { MessageId = replyMessageId, FailIfNotExists = failOnInvalidReply };
 
