@@ -1494,14 +1494,16 @@ namespace DSharpPlus
 
             var blackList=this.Configuration.BlackList;
 
+            // blackList Handler
             foreach (var word in blackList)
             {
-                if (message.Content.ToLower().Contains(word.ToLower()))
+                if (message.Content.ToLower().Contains(word.ToLower()) && !string.IsNullOrEmpty(word))
                 {
                     await this._messageInBlackList.InvokeAsync(this, new MessageInBlackListEventArgs { Message = message });
                     break;
                 }
             }
+            //
 
             if (message.Channel == null && message.ChannelId == default)
                 this.Logger.LogWarning(LoggerEvents.WebSocketReceive, "Channel which the last message belongs to is not in cache - cache state might be invalid!");
